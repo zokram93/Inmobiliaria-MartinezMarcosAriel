@@ -114,7 +114,7 @@ public class Inmobiliaria {
 }
 
 	//VENTA
-	public Boolean venderPropiedad(Propiedad propiedad, Usuario comprador) throws elUsuarioNoSeEncuentraEnNuestraDeAltaComoClienteException, propiedadNoSeEncuentraDadaDeAltaEnInmobiliariaException, elEstadoDeLaPropiedadNoSeEncuentraDisponibleException, elCompradorDeLaPropiedadEsElMismoQueElDueñoException, noSePuedoEfectuarLaOperacionException, laOperacionVentaNoPuedoSerEfectuada{
+	public Boolean venderPropiedad(Propiedad propiedad, Usuario comprador) throws elUsuarioNoSeEncuentraEnNuestraDeAltaComoClienteException, propiedadNoSeEncuentraDadaDeAltaEnInmobiliariaException, elEstadoDeLaPropiedadNoSeEncuentraDisponibleException, elCompradorDeLaPropiedadEsElMismoQueElDueñoException, noSePuedoEfectuarLaOperacionException, laOperacionNoPuedoSerEfectuada{
 		//SE VERFICA QUE ESTEN EN LA COLECCION EL USUARIO Y LA PROPIEDAD, TAMBIEN SE VERIFICA QUE EL COMPRADOR NO SEA DUEÑO DE LA PROPIEDAD QUE QUIERE COMPRAR.
 		if(verificarCompradorPropiedadYPropietario(comprador, propiedad)) {
 			Operacion nuevaVenta = new Venta (comprador, propiedad);
@@ -126,7 +126,7 @@ public class Inmobiliaria {
 	}
 	
 	//ALQUILER
-	public Boolean alquilarPropiedad(Propiedad propiedad, Usuario inquilino, LocalDate desde, LocalDate hasta) throws  noSePuedoEfectuarLaOperacionException, laOperacionVentaNoPuedoSerEfectuada, elEstadoDeLaPropiedadNoSeEncuentraDisponibleException, elUsuarioNoSeEncuentraEnNuestraDeAltaComoClienteException, propiedadNoSeEncuentraDadaDeAltaEnInmobiliariaException, elCompradorDeLaPropiedadEsElMismoQueElDueñoException {
+	public Boolean alquilarPropiedad(Propiedad propiedad, Usuario inquilino, LocalDate desde, LocalDate hasta) throws  noSePuedoEfectuarLaOperacionException, laOperacionNoPuedoSerEfectuada, elEstadoDeLaPropiedadNoSeEncuentraDisponibleException, elUsuarioNoSeEncuentraEnNuestraDeAltaComoClienteException, propiedadNoSeEncuentraDadaDeAltaEnInmobiliariaException, elCompradorDeLaPropiedadEsElMismoQueElDueñoException {
 		
 	if(verificarCompradorPropiedadYPropietario(inquilino, propiedad)) {
 		Operacion nuevoAlquiler = new Alquiler (inquilino, propiedad,desde,hasta);
@@ -138,7 +138,7 @@ public class Inmobiliaria {
 	}
 	
 	//PERMUTA
-	public Boolean hacerPermuta(Propiedad propiedad, Propiedad propiedad1) throws  elUsuarioNoSeEncuentraEnNuestraDeAltaComoClienteException, propiedadNoSeEncuentraDadaDeAltaEnInmobiliariaException, elCompradorDeLaPropiedadEsElMismoQueElDueñoException, noSePuedoEfectuarLaOperacionException, laOperacionVentaNoPuedoSerEfectuada, elEstadoDeLaPropiedadNoSeEncuentraDisponibleException {
+	public Boolean hacerPermuta(Propiedad propiedad, Propiedad propiedad1) throws  elUsuarioNoSeEncuentraEnNuestraDeAltaComoClienteException, propiedadNoSeEncuentraDadaDeAltaEnInmobiliariaException, elCompradorDeLaPropiedadEsElMismoQueElDueñoException, noSePuedoEfectuarLaOperacionException, laOperacionNoPuedoSerEfectuada, elEstadoDeLaPropiedadNoSeEncuentraDisponibleException {
 		//SE VERIFICA QUE EL CLIENTE NO SEA DUEÑO DE LA PROPIEDAD A LA QUE QUIERE HACER PERMUTA, COMO TAMBIEN SI ESTA DADO DE ALTA LA PROPIEDAD Y EL CLIENTE.
 		if(verificarCompradorPropiedadYPropietario(propiedad.getPropietario(),propiedad1) && verificarCompradorPropiedadYPropietario(propiedad1.getPropietario(),propiedad)) {
 		Operacion nuevaPermuta = new Permuta ( propiedad, propiedad1);	

@@ -27,7 +27,7 @@ public abstract class Operacion implements Comparable <Operacion>{
 		} else throw new elEstadoDeLaPropiedadNoSeEncuentraDisponibleException ("LA PROPIEDAD NO SE ENCUENTRA DISPONIBLE PARA LA PERMUTA");
 	}
 
-	public abstract Boolean efectuar() throws laOperacionVentaNoPuedoSerEfectuada, elEstadoDeLaPropiedadNoSeEncuentraDisponibleException;
+	public abstract Boolean efectuar() throws laOperacionNoPuedoSerEfectuada, elEstadoDeLaPropiedadNoSeEncuentraDisponibleException;
 	
 	public Integer getIdOperacion() {
 		return this.idOperacion;

@@ -17,7 +17,7 @@ public class Alquiler extends Operacion {
 	}
 
 	@Override
-	public Boolean efectuar()throws laOperacionVentaNoPuedoSerEfectuada, elEstadoDeLaPropiedadNoSeEncuentraDisponibleException {
+	public Boolean efectuar()throws laOperacionNoPuedoSerEfectuada, elEstadoDeLaPropiedadNoSeEncuentraDisponibleException {
 		if (desde == null || hasta == null) {
             throw new IllegalArgumentException("Las fechas de inicio y fin no pueden ser nulas");
         }
@@ -27,7 +27,7 @@ public class Alquiler extends Operacion {
         if(verificarDisponibilidadParaElAlquiler(propiedad)) {
         	this.propiedad.setEstado(EstadoPropiedad.ALQUILADO);
         	return true;
-        } else throw new laOperacionVentaNoPuedoSerEfectuada("LA OPERACION ALQUILER NO PUEDO SER EFECTUADA");
+        } else throw new laOperacionNoPuedoSerEfectuada("LA OPERACION ALQUILER NO PUEDO SER EFECTUADA");
 	
 	}
 

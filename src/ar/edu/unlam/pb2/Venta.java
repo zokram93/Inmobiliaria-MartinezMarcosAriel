@@ -9,13 +9,13 @@ public class Venta extends Operacion {
 		this.propiedadEnVenta = propiedad;
 	}
 
-	public Boolean efectuar() throws laOperacionVentaNoPuedoSerEfectuada, elEstadoDeLaPropiedadNoSeEncuentraDisponibleException {
+	public Boolean efectuar() throws laOperacionNoPuedoSerEfectuada, elEstadoDeLaPropiedadNoSeEncuentraDisponibleException {
 		
 		if(verificarDisponibilidadParaLaVenta(propiedadEnVenta)) {
 			this.propiedadEnVenta.setEstado(EstadoPropiedad.VENDIDO);
 			this.propiedadEnVenta.setPropietario(comprador);
 			return true;
-		} else throw new laOperacionVentaNoPuedoSerEfectuada("LA OPERACION VENTA NO PUEDO SER EFECTUADA");
+		} else throw new laOperacionNoPuedoSerEfectuada("LA OPERACION VENTA NO PUEDO SER EFECTUADA");
 		
 		
 	}
