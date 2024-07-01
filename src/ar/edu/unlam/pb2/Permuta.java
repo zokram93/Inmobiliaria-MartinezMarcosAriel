@@ -11,7 +11,7 @@ public class Permuta extends Operacion {
 	}
 
 	@Override
-	public Boolean efectuar()throws laOperacionNoPuedoSerEfectuada, elEstadoDeLaPropiedadNoSeEncuentraDisponibleException {
+	public Boolean efectuar()throws laOperacionNoPuedoSerEfectuadaException, elEstadoDeLaPropiedadNoSeEncuentraDisponibleException {
 		if(verificarDisponibilidadParaPermuta(propiedad)&&verificarDisponibilidadParaPermuta(propiedad1)) {
 			Usuario temporal = propiedad.getPropietario();
 			this.propiedad.setPropietario(propiedad1.getPropietario());
@@ -20,7 +20,7 @@ public class Permuta extends Operacion {
 			this.propiedad1.setEstado(EstadoPropiedad.PERMUTADO);
 			return true;
 		}
-		else throw new laOperacionNoPuedoSerEfectuada("LA OPERACION PERMUTA NO PUEDO SER EFECTUADA");
+		else throw new laOperacionNoPuedoSerEfectuadaException("LA OPERACION PERMUTA NO PUEDO SER EFECTUADA");
 	}
 
 	public Propiedad getPropiedad() {

@@ -16,9 +16,8 @@ import ar.edu.unlam.pb2.UmbralMinimoNoAlcanzadoException;
 import ar.edu.unlam.pb2.Usuario;
 import ar.edu.unlam.pb2.elCompradorDeLaPropiedadEsElMismoQueElDueñoException;
 import ar.edu.unlam.pb2.elEstadoDeLaPropiedadNoSeEncuentraDisponibleException;
-import ar.edu.unlam.pb2.elUsuarioNoSeEncuentraEnNuestraDeAltaComoClienteException;
-import ar.edu.unlam.pb2.laOperacionNoPuedoSerEfectuada;
-import ar.edu.unlam.pb2.noSePuedoEfectuarLaOperacionException;
+import ar.edu.unlam.pb2.elUsuarioNoSeEncuentraDeAltaComoClienteException;
+import ar.edu.unlam.pb2.laOperacionNoPuedoSerEfectuadaException;
 import ar.edu.unlam.pb2.propiedadNoSeEncuentraDadaDeAltaEnInmobiliariaException;
 
 public class test {
@@ -155,7 +154,7 @@ public class test {
 		 assertEquals(valorEsperado,valorObtenido);
 	}
 	@Test
-	public void queSePuedaRealizarLaVentaDeUnaPropiedad() throws elUsuarioNoSeEncuentraEnNuestraDeAltaComoClienteException, propiedadNoSeEncuentraDadaDeAltaEnInmobiliariaException, laOperacionNoPuedoSerEfectuada, elEstadoDeLaPropiedadNoSeEncuentraDisponibleException, elCompradorDeLaPropiedadEsElMismoQueElDueñoException, UmbralMinimoNoAlcanzadoException, noSePuedoEfectuarLaOperacionException {
+	public void queSePuedaRealizarLaVentaDeUnaPropiedad() throws elUsuarioNoSeEncuentraDeAltaComoClienteException, propiedadNoSeEncuentraDadaDeAltaEnInmobiliariaException, laOperacionNoPuedoSerEfectuadaException, elEstadoDeLaPropiedadNoSeEncuentraDisponibleException, elCompradorDeLaPropiedadEsElMismoQueElDueñoException, UmbralMinimoNoAlcanzadoException {
 		//PREPARACION DE DATOS
 		 Inmobiliaria inmobiliaria = new Inmobiliaria();
 		 Usuario dueñoanterior = new Usuario("Juan", 13245678);
@@ -171,8 +170,8 @@ public class test {
 		 assertEquals(valorEsperado,valorObtenido);
 		 
 	}
-	@Test (expected = elUsuarioNoSeEncuentraEnNuestraDeAltaComoClienteException.class)
-	public void queNoSePuedaRealizarLaVentaDeUnaPropiedadPorqueElClienteNoSeDioDeAlta() throws elUsuarioNoSeEncuentraEnNuestraDeAltaComoClienteException, propiedadNoSeEncuentraDadaDeAltaEnInmobiliariaException, laOperacionNoPuedoSerEfectuada, elEstadoDeLaPropiedadNoSeEncuentraDisponibleException, elCompradorDeLaPropiedadEsElMismoQueElDueñoException, noSePuedoEfectuarLaOperacionException{
+	@Test (expected = elUsuarioNoSeEncuentraDeAltaComoClienteException.class)
+	public void queNoSePuedaRealizarLaVentaDeUnaPropiedadPorqueElClienteNoSeDioDeAlta() throws elUsuarioNoSeEncuentraDeAltaComoClienteException, propiedadNoSeEncuentraDadaDeAltaEnInmobiliariaException, laOperacionNoPuedoSerEfectuadaException, elEstadoDeLaPropiedadNoSeEncuentraDisponibleException, elCompradorDeLaPropiedadEsElMismoQueElDueñoException{
 		 Inmobiliaria inmobiliaria = new Inmobiliaria();
 		 Usuario comprador = new Usuario("Julian", 13245678);
 		 Propiedad casa =  new Casa("Lara",230, "cañuelas", Provincias.BUENOS_AIRES, 100000.0, EstadoPropiedad.SE_VENDE, comprador);
@@ -180,7 +179,7 @@ public class test {
 		 inmobiliaria.venderPropiedad(casa,comprador);
 	}
 	@Test
-	public void queSePuedaRealizarElAlquilerDeUnaPropiedad() throws UmbralMinimoNoAlcanzadoException, noSePuedoEfectuarLaOperacionException, laOperacionNoPuedoSerEfectuada, elEstadoDeLaPropiedadNoSeEncuentraDisponibleException, elUsuarioNoSeEncuentraEnNuestraDeAltaComoClienteException, propiedadNoSeEncuentraDadaDeAltaEnInmobiliariaException, elCompradorDeLaPropiedadEsElMismoQueElDueñoException {
+	public void queSePuedaRealizarElAlquilerDeUnaPropiedad() throws UmbralMinimoNoAlcanzadoException, laOperacionNoPuedoSerEfectuadaException, elEstadoDeLaPropiedadNoSeEncuentraDisponibleException, elUsuarioNoSeEncuentraDeAltaComoClienteException, propiedadNoSeEncuentraDadaDeAltaEnInmobiliariaException, elCompradorDeLaPropiedadEsElMismoQueElDueñoException {
 		//PREPARACION DE DATOS
 		 Inmobiliaria inmobiliaria = new Inmobiliaria();
 		 Usuario cliente = new Usuario("Juan", 13245678);
@@ -199,7 +198,7 @@ public class test {
 		 assertEquals(valorEsperado, valorObtenido);
 	}
 	@Test (expected = elEstadoDeLaPropiedadNoSeEncuentraDisponibleException.class)
-	public void queNoseSePuedaRealizarElAlquilerDeUnaPropiedadPorQueSuEstadoEsAlquilado() throws UmbralMinimoNoAlcanzadoException, noSePuedoEfectuarLaOperacionException, laOperacionNoPuedoSerEfectuada, elEstadoDeLaPropiedadNoSeEncuentraDisponibleException, elUsuarioNoSeEncuentraEnNuestraDeAltaComoClienteException, propiedadNoSeEncuentraDadaDeAltaEnInmobiliariaException, elCompradorDeLaPropiedadEsElMismoQueElDueñoException {
+	public void queNoseSePuedaRealizarElAlquilerDeUnaPropiedadPorQueSuEstadoEsAlquilado() throws UmbralMinimoNoAlcanzadoException, laOperacionNoPuedoSerEfectuadaException, elEstadoDeLaPropiedadNoSeEncuentraDisponibleException, elUsuarioNoSeEncuentraDeAltaComoClienteException, propiedadNoSeEncuentraDadaDeAltaEnInmobiliariaException, elCompradorDeLaPropiedadEsElMismoQueElDueñoException {
 		//PREPARACION DE DATOS
 		 Inmobiliaria inmobiliaria = new Inmobiliaria();
 		 Usuario cliente = new Usuario("Juan", 145678);
@@ -212,7 +211,7 @@ public class test {
 		 inmobiliaria.altaCliente(inquilino);
 		 inmobiliaria.alquilarPropiedad(casa, inquilino,desde,hasta );}
 	@Test (expected = propiedadNoSeEncuentraDadaDeAltaEnInmobiliariaException.class)
-	public void queNoSePuedaRealizarElAlquilerDeUnaPropiedadPorQueLaCasaNoSeEncontro() throws  elEstadoDeLaPropiedadNoSeEncuentraDisponibleException, elUsuarioNoSeEncuentraEnNuestraDeAltaComoClienteException, propiedadNoSeEncuentraDadaDeAltaEnInmobiliariaException, elCompradorDeLaPropiedadEsElMismoQueElDueñoException, noSePuedoEfectuarLaOperacionException, laOperacionNoPuedoSerEfectuada  {
+	public void queNoSePuedaRealizarElAlquilerDeUnaPropiedadPorQueLaCasaNoSeEncontro() throws  elEstadoDeLaPropiedadNoSeEncuentraDisponibleException, elUsuarioNoSeEncuentraDeAltaComoClienteException, propiedadNoSeEncuentraDadaDeAltaEnInmobiliariaException, elCompradorDeLaPropiedadEsElMismoQueElDueñoException, laOperacionNoPuedoSerEfectuadaException  {
 		//PREPARACION DE DATOS
 		 Inmobiliaria inmobiliaria = new Inmobiliaria();
 		 Usuario dueño = new Usuario("Juan", 13245678);
@@ -227,7 +226,7 @@ public class test {
 	}
 
 	@Test
-	public void queSePuedaRealizarLaPermutaDeDosPropiedades() throws   UmbralMinimoNoAlcanzadoException, elUsuarioNoSeEncuentraEnNuestraDeAltaComoClienteException, propiedadNoSeEncuentraDadaDeAltaEnInmobiliariaException, elCompradorDeLaPropiedadEsElMismoQueElDueñoException, noSePuedoEfectuarLaOperacionException, laOperacionNoPuedoSerEfectuada, elEstadoDeLaPropiedadNoSeEncuentraDisponibleException{
+	public void queSePuedaRealizarLaPermutaDeDosPropiedades() throws   UmbralMinimoNoAlcanzadoException, elUsuarioNoSeEncuentraDeAltaComoClienteException, propiedadNoSeEncuentraDadaDeAltaEnInmobiliariaException, elCompradorDeLaPropiedadEsElMismoQueElDueñoException, laOperacionNoPuedoSerEfectuadaException, elEstadoDeLaPropiedadNoSeEncuentraDisponibleException{
 		//PREPARACION DE DATOS
 		 Inmobiliaria inmobiliaria = new Inmobiliaria();
 		 Usuario cliente = new Usuario("Juan", 13245678);
