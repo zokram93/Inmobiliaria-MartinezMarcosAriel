@@ -8,25 +8,8 @@ public abstract class Operacion implements Comparable <Operacion>{
 	public Operacion() {
 		this.idOperacion = contador++ ;
 	}
-
-	public Boolean verificarDisponibilidadParaLaVenta(Propiedad propiedad) throws elEstadoDeLaPropiedadNoSeEncuentraDisponibleException {
-		if(propiedad.getEstado().equals(EstadoPropiedad.SE_VENDE)) {
-			return true;
-		} else throw new elEstadoDeLaPropiedadNoSeEncuentraDisponibleException ("LA PROPIEDAD NO SE ENCUENTRA DISPONIBLE PARA LA VENTA");
-	}
-	
-	public Boolean verificarDisponibilidadParaElAlquiler(Propiedad propiedad) throws elEstadoDeLaPropiedadNoSeEncuentraDisponibleException {
-		if(propiedad.getEstado().equals(EstadoPropiedad.SE_ALQUILA )) {
-			return true;
-		} else throw new elEstadoDeLaPropiedadNoSeEncuentraDisponibleException ("LA PROPIEDAD NO SE ENCUENTRA DISPONIBLE PARA ALQUILARLA");
-	}
-	
-	public Boolean verificarDisponibilidadParaPermuta(Propiedad propiedad) throws elEstadoDeLaPropiedadNoSeEncuentraDisponibleException {
-		if(propiedad.getEstado().equals(EstadoPropiedad.SE_PERMUTA )) {
-			return true;
-		} else throw new elEstadoDeLaPropiedadNoSeEncuentraDisponibleException ("LA PROPIEDAD NO SE ENCUENTRA DISPONIBLE PARA LA PERMUTA");
-	}
-
+	public abstract Boolean verificarDisponibilidad(Propiedad propiedad) throws elEstadoDeLaPropiedadNoSeEncuentraDisponibleException ;
+		
 	public abstract Boolean efectuar() throws laOperacionNoPuedoSerEfectuadaException, elEstadoDeLaPropiedadNoSeEncuentraDisponibleException;
 	
 	public Integer getIdOperacion() {

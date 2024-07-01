@@ -8,10 +8,18 @@ public class Venta extends Operacion {
 		this.comprador = comprador;
 		this.propiedadEnVenta = propiedad;
 	}
-
+	
+	@Override
+	public Boolean verificarDisponibilidad(Propiedad propiedad) throws elEstadoDeLaPropiedadNoSeEncuentraDisponibleException {
+		if(propiedad.getEstado().equals(EstadoPropiedad.SE_VENDE )) {
+			return true;
+		} else throw new elEstadoDeLaPropiedadNoSeEncuentraDisponibleException ("LA PROPIEDAD NO SE ENCUENTRA DISPONIBLE PARA LA VENTA");
+	}
+	
+	@Override
 	public Boolean efectuar() throws laOperacionNoPuedoSerEfectuadaException, elEstadoDeLaPropiedadNoSeEncuentraDisponibleException {
 		
-		if(verificarDisponibilidadParaLaVenta(propiedadEnVenta)) {
+		if(verificarDisponibilidad(propiedadEnVenta)) {
 			this.propiedadEnVenta.setEstado(EstadoPropiedad.VENDIDO);
 			this.propiedadEnVenta.setPropietario(comprador);
 			return true;

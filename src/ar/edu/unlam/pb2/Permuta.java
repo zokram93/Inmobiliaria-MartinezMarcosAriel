@@ -9,10 +9,17 @@ public class Permuta extends Operacion {
 		this.propiedad = propiedad;
 		this.propiedad1 = propiedad1;
 	}
+	
+	@Override
+	public Boolean verificarDisponibilidad(Propiedad propiedad) throws elEstadoDeLaPropiedadNoSeEncuentraDisponibleException {
+		if(propiedad.getEstado().equals(EstadoPropiedad.SE_PERMUTA )) {
+			return true;
+		} else throw new elEstadoDeLaPropiedadNoSeEncuentraDisponibleException ("LA PROPIEDAD NO SE ENCUENTRA DISPONIBLE PARA LA PERMUTA");
+	}
 
 	@Override
 	public Boolean efectuar()throws laOperacionNoPuedoSerEfectuadaException, elEstadoDeLaPropiedadNoSeEncuentraDisponibleException {
-		if(verificarDisponibilidadParaPermuta(propiedad)&&verificarDisponibilidadParaPermuta(propiedad1)) {
+		if(verificarDisponibilidad(propiedad)&&verificarDisponibilidad(propiedad1)) {
 			Usuario temporal = propiedad.getPropietario();
 			this.propiedad.setPropietario(propiedad1.getPropietario());
 			this.propiedad1.setPropietario(temporal);

@@ -17,6 +17,13 @@ public class Alquiler extends Operacion {
 	}
 
 	@Override
+	public Boolean verificarDisponibilidad(Propiedad propiedad) throws elEstadoDeLaPropiedadNoSeEncuentraDisponibleException {
+		if(propiedad.getEstado().equals(EstadoPropiedad.SE_ALQUILA )) {
+			return true;
+		} else throw new elEstadoDeLaPropiedadNoSeEncuentraDisponibleException ("LA PROPIEDAD NO SE ENCUENTRA DISPONIBLE PARA EL ALQUILER");
+	}
+
+	@Override
 	public Boolean efectuar()throws laOperacionNoPuedoSerEfectuadaException, elEstadoDeLaPropiedadNoSeEncuentraDisponibleException {
 		if (desde == null || hasta == null) {
             throw new IllegalArgumentException("Las fechas de inicio y fin no pueden ser nulas");
@@ -24,7 +31,7 @@ public class Alquiler extends Operacion {
         if (desde.isAfter(hasta)) {
             throw new IllegalArgumentException("La fecha de hasta debe ser posterior o igual a la fecha de inicio");
         }
-        if(verificarDisponibilidadParaElAlquiler(propiedad)) {
+        if(verificarDisponibilidad(propiedad)) {
         	this.propiedad.setEstado(EstadoPropiedad.ALQUILADO);
         	return true;
         } else throw new laOperacionNoPuedoSerEfectuadaException("LA OPERACION ALQUILER NO PUEDO SER EFECTUADA");
@@ -47,6 +54,8 @@ public class Alquiler extends Operacion {
 	public LocalDate getHasta() {
 		return hasta;
 	}
+
+
 	
 
 }
