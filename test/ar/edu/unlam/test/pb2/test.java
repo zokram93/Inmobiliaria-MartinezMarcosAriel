@@ -164,7 +164,7 @@ public class test {
 		 inmobiliaria.agregarPropiedad(casa);
 		//EJECUCION
 		 Boolean valorObtenido = null;
-		 valorObtenido = inmobiliaria.venderPropiedad(casa,comprador);
+		 valorObtenido = inmobiliaria.venderPropiedad(casa, comprador);
 		//VALIDACION
 		 Boolean valorEsperado = true;
 		 assertEquals(valorEsperado,valorObtenido);
@@ -196,6 +196,7 @@ public class test {
 		 //VALIDACION
 		 Boolean valorEsperado = true;
 		 assertEquals(valorEsperado, valorObtenido);
+		 
 	}
 	@Test (expected = elEstadoDeLaPropiedadNoSeEncuentraDisponibleException.class)
 	public void queNoseSePuedaRealizarElAlquilerDeUnaPropiedadPorQueSuEstadoEsAlquilado() throws UmbralMinimoNoAlcanzadoException, laOperacionNoPuedoSerEfectuadaException, elEstadoDeLaPropiedadNoSeEncuentraDisponibleException, elUsuarioNoSeEncuentraDeAltaComoClienteException, propiedadNoSeEncuentraDadaDeAltaEnInmobiliariaException, elCompradorDeLaPropiedadEsElMismoQueElDueñoException {

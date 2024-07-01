@@ -127,12 +127,11 @@ public class Inmobiliaria {
 	
 	//ALQUILER
 	public Boolean alquilarPropiedad(Propiedad propiedad, Usuario inquilino, LocalDate desde, LocalDate hasta) throws laOperacionNoPuedoSerEfectuadaException, elEstadoDeLaPropiedadNoSeEncuentraDisponibleException, elUsuarioNoSeEncuentraDeAltaComoClienteException, propiedadNoSeEncuentraDadaDeAltaEnInmobiliariaException, elCompradorDeLaPropiedadEsElMismoQueElDueñoException {
-		
-	if(verificarCompradorPropiedadYPropietario(inquilino, propiedad)) {
-		Operacion nuevoAlquiler = new Alquiler (inquilino, propiedad,desde,hasta);
-		if(nuevoAlquiler.efectuar()) {
-			return operaciones.add(nuevoAlquiler);
-		}
+		if(verificarCompradorPropiedadYPropietario(inquilino, propiedad)) {
+			Operacion nuevoAlquiler = new Alquiler (inquilino, propiedad,desde,hasta);
+			if(nuevoAlquiler.efectuar()) {
+				return operaciones.add(nuevoAlquiler);
+			}
 	}
 		throw new laOperacionNoPuedoSerEfectuadaException("NO SE PUDO REALIZAR LA OPERACION DEL ALQUILER");	
 	}
@@ -141,9 +140,9 @@ public class Inmobiliaria {
 	public Boolean hacerPermuta(Propiedad propiedad, Propiedad propiedad1) throws  elUsuarioNoSeEncuentraDeAltaComoClienteException, propiedadNoSeEncuentraDadaDeAltaEnInmobiliariaException, elCompradorDeLaPropiedadEsElMismoQueElDueñoException, laOperacionNoPuedoSerEfectuadaException, elEstadoDeLaPropiedadNoSeEncuentraDisponibleException {
 		//SE VERIFICA QUE EL CLIENTE NO SEA DUEÑO DE LA PROPIEDAD A LA QUE QUIERE HACER PERMUTA, COMO TAMBIEN SI ESTA DADO DE ALTA LA PROPIEDAD Y EL CLIENTE.
 		if(verificarCompradorPropiedadYPropietario(propiedad.getPropietario(),propiedad1) && verificarCompradorPropiedadYPropietario(propiedad1.getPropietario(),propiedad)) {
-		Operacion nuevaPermuta = new Permuta ( propiedad, propiedad1);	
-		if(nuevaPermuta.efectuar()) {
-			return operaciones.add(nuevaPermuta);
+			Operacion nuevaPermuta = new Permuta ( propiedad, propiedad1);	
+			if(nuevaPermuta.efectuar()) {
+				return operaciones.add(nuevaPermuta);
 		}
 			
 		}

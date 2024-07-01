@@ -1,6 +1,9 @@
 package ar.edu.unlam.test.pb2;
 
+import java.util.LinkedList;
 import java.util.Scanner;
+import java.util.TreeSet;
+
 import ar.edu.unlam.pb2.Campo;
 import ar.edu.unlam.pb2.Casa;
 import ar.edu.unlam.pb2.Departamento;
@@ -12,7 +15,9 @@ import ar.edu.unlam.pb2.Provincias;
 import ar.edu.unlam.pb2.Terreno;
 import ar.edu.unlam.pb2.UmbralMinimoNoAlcanzadoException;
 import ar.edu.unlam.pb2.Usuario;
+import ar.edu.unlam.pb2.ordenadoPorPrecio;
 import ar.edu.unlam.pb2.propiedadNoSeEncuentraDadaDeAltaEnInmobiliariaException;
+import ar.edu.unlam.pb2.propiedadOrdenadosPorUbicacion;
 
 public class Main {
 	static Scanner scanner = new Scanner(System.in);
@@ -64,21 +69,16 @@ public class Main {
                 				break;	
                 			}
                 	break;
-                case 2:	if(menuModificarPropiedad(admin)) {
-                	
-                } 
-    						
-            
-
+                case 2:	menuModificarPropiedad(admin);
                     break;
-//                case 3: agregarCliente();
-//                    break;
-//                case 4: mostrarArreglo(inmobiliaria.devuelverArrayordenadoPorPrecio());
-//                    break;
-//                case 5: mostrarArreglo(inmobiliaria.devuelverArrayordenadoPorUbicacion());       
-//                    break;
+                case 3: agregarCliente();
+                    break;
+                case 4: mostrarArregloOrdenadosPorPrecio(inmobiliaria.getPropiedades());
+                    break;
+                case 5: mostrarArregloOrdenadosPorUbicacion(inmobiliaria.getPropiedades());       
+                    break;
 //                case 6: switch(seleccionBusqueda()) {
-//                			case 1: mostrarArreglo(inmobiliaria.devolverCasaPorRangoDePrecio(elejirDesde(),elejirHasta()));
+//                			case 1: mostrarArreglo(inmobiliaria.buscarDepartamentoPorRangoDePrecio(ingresarDesde(), ingresarHasta())));
 //                			break;
 //                			case 2: mostrarArreglo(inmobiliaria.devolverPropiedadPorUbicacion(ubicacionSeleccionada()));
 //                			break;
@@ -106,6 +106,7 @@ public class Main {
     
 
 	}
+
 
 
 	//METODOS DE SOLICITUD DE DATOS
@@ -153,24 +154,37 @@ public class Main {
 //		}while(opcion==false);
 //		return opcionElejida;
 //	}
-//
-//	private static void mostrarArreglo(LinkedList<Casa>casas) {
-//		for (Casa actual : casas) {
-//			
-//				System.out.println(actual.toString());
-//			}
-//		}
+
+	private static void mostrarArregloOrdenadosPorPrecio(TreeSet<Propiedad>propiedades) {
+		LinkedList<Propiedad> ordenadosxPrecioPrecio=new LinkedList<>();
+		for (Propiedad actual : propiedades) {
+			ordenadosxPrecioPrecio.add(actual);
+		}
+		ordenadosxPrecioPrecio.sort(new ordenadoPorPrecio());
+		for (Propiedad actual : ordenadosxPrecioPrecio) {
+				System.out.println(actual.toString());
+			}
+		}
+	private static void mostrarArregloOrdenadosPorUbicacion(TreeSet<Propiedad> propiedades) {
+		LinkedList<Propiedad> ordenadosxPrecioPrecio=new LinkedList<>();
+		for (Propiedad actual : propiedades) {
+			ordenadosxPrecioPrecio.add(actual);
+		}
+		ordenadosxPrecioPrecio.sort(new propiedadOrdenadosPorUbicacion());
+		for (Propiedad actual : ordenadosxPrecioPrecio) {
+				System.out.println(actual.toString());
+			}
+		}
 		
 
-//	private static void agregarCliente() {
-//		System.out.println("INGRESE EL NOMBRE DEL CLIENTE");
-//		String nombre = scanner.next();scanner.nextLine();
-//		System.out.println("INGRESE EL DNI DEL CLIENTE");
-//		Integer dni = scanner.nextInt();
-//		if(inmobiliaria.altaCliente(cliente)) {
-//			System.out.println("se agrego exitosamente: " + cliente.toString());
-//		}else System.out.println("no se puedo agregar intente nuevamente");
-//	}
+	private static void agregarCliente() {
+		String nombre = solicitarPorScannerUnString("INGRESE EL NOMBRE DEL CLIENTE");
+		Integer dni = solicitarPorScannerUnInteger("INGRESE EL DNI DEL CLIENTE");
+		Usuario nuevo = new Usuario (nombre,dni);
+		if(inmobiliaria.altaCliente(nuevo)) {
+			System.out.println("se agrego exitosamente: " + nuevo.toString());
+		}else System.out.println("no se puedo agregar intente nuevamente");
+	}
 
 	//CONSULTA PROPIEDAD
 	private static Integer consultaPropiedad(String mensaje) {
